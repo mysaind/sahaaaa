@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saharays</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+  <!-- Fondo con corazones -->
+  <div class="hearts" aria-hidden="true"></div>
+
+  <!-- Nubes (se mueven con CSS) -->
+  <div class="cloud c1" aria-hidden="true"></div>
+  <div class="cloud c2" aria-hidden="true"></div>
+  <div class="cloud c3" aria-hidden="true"></div>
+  <div class="cloud c4" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <section class="panel" id="panel">
+      <div class="envelope-wrap">
+        <button class="envelope" id="envelope" aria-label="Abrir carta">
+          <span class="wing left" aria-hidden="true"></span>
+          <span class="wing right" aria-hidden="true"></span>
+
+          <span class="mail" aria-hidden="true">
+            <img src="crrr.gif" class="mail-gif" alt="gif">
+          </span>
+        </button>
+      </div>
+
+      <p class="timer-text">
+        <span id="timer">10s</span>
+      </p>
+
+      <p class="hint" id="hint">Espera</p>
+    </section>
+  </main>
+
+  <!-- MODAL / CARTELITO -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+
+    <div class="modal-card" id="modalCard">
+      <button class="close" id="closeBtn" aria-label="Cerrar">✕</button>
+
+      <div class="message" id="message">
+        <h2></h2>
+        <p>
+          Holaaaa<br><br>
+          Perdón por lo de ayer, es que no sé cómo expresarme contigo en el sentido positivo.<br>
+          Quiero hablarte de tantas cosas pero no sé por de qué rama irme.<br>
+          Es primera vez que me pongo así con alguien; para mí es una experiencia nueva y no sé cómo manejarla.<br>
+          Normalmente no soy así, nunca lo he sido.<br><br>
+
+          Todo el día pienso en qué hablar contigo, todo el día pienso en ti y cuando estoy por escribirte se me va todo literal...<br><br>
+
+          Contigo me pasa algo raro, por eso no sé cómo actuar, porque sí quiero hablar, sí quiero contarte cosas de mi día,
+          preguntarte cómo estás (aunque te lo pregunto a cada rato akwdjajw), pero cuando llega el momento me pongo nervioso por ti.<br>
+          Me quedo mirando la pantalla pensando qué escribir.<br><br>
+
+          No estoy acostumbrado a sentir esta emoción al charlar con alguien que me importa mucho.
+          Me importa lo que pienses de mí y por eso siempre sobrepienso todo.<br><br>
+
+          No es que no tenga tema, es que contigo quiero que todo fluya.
+          No quiero que te sientas confundida porque todo lo que te dije es verdad…
+          solo que no quiero cagarla contigo :c <br>
+          Me pongo demasiado nervioso cuando charlo contigo.<br><br>
+
+          Te quiero mucho, que pases este día tan bonito, feliz.
+          Quiero que te vaya bien en tu uni y que la pases bien bonito con tus amig@s.<br><br>
+
+          Perdona si te molesto, pareciera que fuera egoísta porque no sé lo que sientes tú todavía, no sé si te intereso…
+          solo que realmente siento mucho en poco tiempo y no tengo en qué pensar más que en ti, y eso me hace bloquearme por completo :c
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIO (NO autoplay; lo arrancamos con click del sobre para que GitHub lo permita) -->
+  <audio id="bgm" preload="auto" loop>
+    <source src="./kin.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

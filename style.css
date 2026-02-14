@@ -1,0 +1,315 @@
+:root{
+  --bg1:#ffd0df;
+  --bg2:#ffb1cb;
+  --pink:#ff4d7d;
+  --text:#7a2e48;
+  --muted: rgba(122,46,72,.7);
+  --shadow: 0 18px 50px rgba(0,0,0,.18);
+  --softshadow: 0 10px 22px rgba(0,0,0,.12);
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  overflow:hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255,77,125,.06), transparent 40%),
+    radial-gradient(circle at 80% 25%, rgba(255,77,125,.05), transparent 40%),
+    #ffffff;
+}
+
+/* =========================
+   💗 CORAZONES BONITOS (FONDO)
+========================= */
+.hearts{
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================
+   GIF FLOTANDO
+========================= */
+
+.gif-float{
+  position: absolute;
+  bottom: -80px;
+  width: 60px;   /* tamaño del gif */
+  pointer-events: none;
+  animation: gifUp linear infinite;
+  opacity: .9;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.15));
+}
+
+@keyframes gifUp{
+  0%{
+    transform: translateY(0) translateX(0) scale(var(--s));
+    opacity: 0;
+  }
+  10%{
+    opacity: .95;
+  }
+  100%{
+    transform:
+      translateY(-120vh)
+      translateX(var(--dx))
+      scale(var(--s));
+    opacity: 0;
+  }
+}
+/* =========================
+   NUBES (flotan + se mueven)
+========================= */
+@keyframes floatY{
+  0%,100%{ transform: translateY(0px); }
+  50%{ transform: translateY(14px); }
+}
+@keyframes driftX{
+  0%{ left:-25vw; }
+  100%{ left:110vw; }
+}
+
+.cloud{
+  position:absolute;
+  width:240px;
+  height:120px;
+  background: rgba(255,255,255,.92);
+  border-radius: 999px;
+  filter: drop-shadow(0 14px 18px rgba(0,0,0,.12));
+  opacity:.95;
+  z-index: 1;
+}
+
+.cloud::before,
+.cloud::after{
+  content:"";
+  position:absolute;
+  background: rgba(255,255,255,.95);
+  border-radius:999px;
+}
+.cloud::before{ width:120px; height:95px; left:28px; top:-32px; }
+.cloud::after{ width:150px; height:112px; right:16px; top:-40px; }
+
+/* Velocidades (ajústalas aquí) */
+.c1{
+  top: 8vh;
+  animation: driftX 40s linear infinite, floatY 3s ease-in-out infinite;
+}
+.c2{
+  top: 14vh;
+  transform: scale(.8);
+  animation: driftX 55s linear infinite, floatY 6s ease-in-out infinite;
+  opacity:.88;
+}
+.c3{
+  top: 62vh;
+  transform: scale(1.05);
+  animation: driftX 48s linear infinite, floatY 5s ease-in-out infinite;
+}
+.c4{
+  top: 72vh;
+  transform: scale(.9);
+  animation: driftX 62s linear infinite, floatY 7s ease-in-out infinite;
+  opacity:.9;
+}
+
+/* =========================
+   CENTRO
+========================= */
+.wrap{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding: 18px;
+  position:relative;
+  z-index: 2;
+}
+
+.panel{
+  width:min(560px, 92vw);
+  text-align:center;
+}
+
+.envelope-wrap{
+  display:grid;
+  place-items:center;
+  margin-bottom: 14px;
+}
+
+/* botón-carta */
+.envelope{
+  border:0;
+  background: transparent;
+  padding:0;
+  cursor:pointer;
+  position:relative;
+  width: 170px;
+  height: 120px;
+  outline: none;
+  filter: drop-shadow(var(--softshadow));
+  transition: transform .2s ease;
+}
+.envelope:active{ transform: scale(.98); }
+
+.mail-gif{
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  pointer-events: none;
+
+  /* efecto bonito */
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.15));
+  animation: pulseGif 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseGif{
+  0%,100%{ transform: scale(1); }
+  50%{ transform: scale(1.1); }
+}
+
+/* alas */
+.wing{
+  position:absolute;
+  top: 48px;
+  width: 48px;
+  height: 28px;
+  background: rgba(255,255,255,.92);
+  border-radius: 999px;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.12));
+}
+.wing.left{ left: 10px; transform: rotate(-10deg); }
+.wing.right{ right: 10px; transform: rotate(10deg); }
+
+/* corazón */
+.heart{
+  width: 28px;
+  height: 28px;
+  background: var(--pink);
+  transform: rotate(45deg);
+  border-radius: 8px;
+  position:relative;
+  box-shadow: 0 12px 22px rgba(255,77,125,.30);
+}
+.heart::before,
+.heart::after{
+  content:"";
+  position:absolute;
+  width: 28px;
+  height: 28px;
+  background: var(--pink);
+  border-radius: 50%;
+}
+.heart::before{ left:-14px; top:0; }
+.heart::after{ top:-14px; left:0; }
+
+.timer-text{
+  margin: 8px 0 0;
+  font-size: 13px;
+  opacity:.9;
+}
+#timer{ font-weight: 900; }
+.hint{
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* =========================
+   MODAL / CARTELITO
+========================= */
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  place-items:center;
+  z-index: 50;
+}
+
+.modal.show{
+  display:grid;
+}
+
+.modal-backdrop{
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,.25);
+  backdrop-filter: blur(2px);
+}
+
+/* Cartelito con fondo GIF */
+.modal-card{
+  position:relative;
+  width:min(520px, 92vw);
+  min-height: 240px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.45);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat:no-repeat;
+
+  transform: translateY(10px) scale(.98);
+  opacity: 0;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+.modal.show .modal-card{
+  transform: translateY(0px) scale(1);
+  opacity: 1;
+}
+
+.modal-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.80),
+    rgba(255,255,255,.55)
+  );
+}
+
+.message{
+  position:relative;
+  z-index: 2;
+  padding: 22px 18px 18px;
+  text-align:center;
+  color: var(--text);
+}
+
+.message h2{
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 900;
+}
+.message p{
+  margin:0;
+  font-size: 14px;
+  line-height:1.45;
+  font-weight: 700;
+}
+
+.close{
+  position:absolute;
+  z-index: 3;
+  top: 10px;
+  right: 10px;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.75);
+  cursor:pointer;
+  font-size: 16px;
+  font-weight: 900;
+  box-shadow: 0 10px 18px rgba(0,0,0,.12);
+}
+.close:active{ transform: scale(.98); }
